@@ -88,7 +88,7 @@
     const pts = departamentos.map(([name, lat, lon]) => addCircle(lat, lon, name));
     map.fitBounds(L.latLngBounds(pts).pad(0.06));
 
-    // Leyenda
+    // Leyend
     const legend = L.control({position: 'bottomleft'});
     legend.onAdd = function() {
       const div = L.DomUtil.create('div', 'legend');
