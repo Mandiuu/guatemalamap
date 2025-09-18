@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Guatemala Departments Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <!-- Leaflet AwesomeMarkers CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.4/leaflet.awesome-markers.css"/>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- jQuery (needed for Folium popups) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Leaflet AwesomeMarkers JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.4/leaflet.awesome-markers.js"></script>
+
+    <script>
+        // Initialize map
+        var map = L.map('map').setView([15.0, -90.5], 7);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Helper function for markers
+        function addMarker(lat, lon, name, region, color) {
+            var marker = L.marker([lat, lon], {
+                icon: L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    prefix: 'glyphicon',
+                    markerColor: color,
+                    iconColor: 'white'
+                })
+            }).addTo(map);
+            marker.bindPopup("<b>" + name + "</b><br/>" + region);
+            marker.bindTooltip(name, {sticky: true});
+        }
+
+        // Western (red)
+        addMarker(15.3206, -91.4708, "Huehuetenango", "Western region", "red");
+        addMarker(15.0300, -91.1480, "Quiché (Santa Cruz del Quiché)", "Western region", "red");
+        addMarker(14.9130, -91.3600, "Totonicapán", "Western region", "red");
+        addMarker(14.8345, -91.5180, "Quetzaltenango", "Western region", "red");
+        addMarker(14.9630, -91.7940, "San Marcos", "Western region", "red");
+        addMarker(14.7722, -91.1830, "Sololá", "Western region", "red");
+        addMarker(14.6610, -90.8190, "Chimaltenango", "Western region", "red");
+        addMarker(14.5347, -91.5040, "Suchitepéquez (Mazatenango)", "Western region", "red");
+        addMarker(14.5370, -91.6770, "Retalhuleu", "Western region", "red");
+        addMarker(14.5590, -90.7330, "Sacatepéquez (Antigua Guatemala)", "Western region", "red");
+        addMarker(14.3050, -90.7860, "Escuintla", "Western region", "red");
+
+        // Non-western (blue)
+        addMarker(15.4710, -90.3710, "Alta Verapaz (Cobán)", "Non-western region", "blue");
+        addMarker(15.1020, -90.3180, "Baja Verapaz (Salamá)", "Non-western region", "blue");
+        addMarker(14.6349, -90.5069, "Guatemala (Guatemala City)", "Non-western region", "blue");
+        addMarker(15.7270, -88.5940, "Izabal (Puerto Barrios)", "Non-western region", "blue");
+        addMarker(16.9226, -89.8930, "Petén (Flores)", "Non-western region", "blue");
+        addMarker(14.8000, -89.5450, "Chiquimula", "Non-western region", "blue");
+        addMarker(14.9722, -89.5306, "Zacapa", "Non-western region", "blue");
+        addMarker(14.6344, -89.9889, "Jalapa", "Non-western region", "blue");
+        addMarker(14.2911, -89.8958, "Jutiapa", "Non-western region", "blue");
+        addMarker(14.2770, -90.2980, "Santa Rosa (Cuilapa)", "Non-western region", "blue");
+        addMarker(14.8500, -90.0667, "El Progreso (Guastatoya)", "Non-western region", "blue");
+
+        // Fit bounds
+        var bounds = [
+            [14.2770, -91.7940],
+            [16.9226, -88.5940]
+        ];
+        map.fitBounds(bounds);
+    </script>
+</body>
+</html>
